@@ -72,8 +72,6 @@ We appreciate your input in improving the library and making it more user-friend
 
 ## License
 
-ZebraScanSDK is distributed under the GNU General Public License.
-
 ```markdown
 Infomaniak ZebraScanSDK - Android
 Copyright (C) 2023 Infomaniak Network SA
