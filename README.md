@@ -62,7 +62,7 @@ class MyActivity : AppCompatActivity() {
 
 ## Example Project
 
-To see ZebraScanSDK in action, you can explore the [ZebraScanSDKDemo](https://github.com/Infomaniak/ZebraScanSDK/ZebraScanSDKDemo) project available in the same repository. 
+To see ZebraScanSDK in action, you can explore the [ZebraScanSDKDemo](https://github.com/Infomaniak/ZebraScanSDK/tree/main/ZebraScanSDKDemo) project available in the same repository. 
 This open-source project provides a comprehensive example of how to integrate and use the library in a real-world Android application.
 
 ## Contributions
