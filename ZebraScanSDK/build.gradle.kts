@@ -18,6 +18,7 @@
 plugins {
     id("com.android.library")
     id("org.jetbrains.kotlin.android")
+    id("maven-publish")
 }
 
 val javaVersion: JavaVersion by rootProject.extra
@@ -30,7 +31,6 @@ android {
 
     defaultConfig {
         minSdk = minSdkExtra
-        lint.targetSdk = targetSdkExtra
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
@@ -58,10 +58,26 @@ android {
 
 dependencies {
 
+    implementation("androidx.compose.ui:ui:1.5.1")
     implementation("androidx.core:core-ktx:1.12.0")
     implementation("androidx.lifecycle:lifecycle-common:2.6.2")
-    implementation("androidx.compose.ui:ui:1.5.1")
+
+    implementation("com.github.jitpack:gradle-simple:2.0")
+
     testImplementation("junit:junit:4.13.2")
     androidTestImplementation("androidx.test.ext:junit:1.1.5")
     androidTestImplementation("androidx.test.espresso:espresso-core:3.5.1")
+}
+
+afterEvaluate {
+    publishing {
+        publications {
+            create<MavenPublication>("release") {
+                from(components.findByName("release"))
+                groupId = "com.infomaniak"
+                artifactId = "ZebraScanSDK"
+                version = "1.0.0"
+            }
+        }
+    }
 }
