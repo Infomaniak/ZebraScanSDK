@@ -9,10 +9,16 @@ To use ZebraScanSDK in your Android project, follow these installation steps:
 
 ### Gradle
 
+Add the *Jitpack* repository to your project's `build.gradle` file's `repositories` section:
+
+```gradle
+maven { url 'https://jitpack.io' }
+```
+
 Add the following dependency to your project's `build.gradle` file:
 
 ```gradle
-implementation 'com.infomaniak.zebrascansdk:zebrascansdk:1.0.0'
+implementation 'com.github.infomaniak:ZebraScanSDK:1.0.0'
 ```
 
 Sync your project with Gradle files to make sure the library is downloaded.
