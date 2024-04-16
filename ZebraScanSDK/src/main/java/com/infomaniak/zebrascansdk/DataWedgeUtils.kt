@@ -20,8 +20,11 @@ package com.infomaniak.zebrascansdk
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 
 object DataWedgeUtils {
+
+    const val TAG = "DataWedgeUtils"
 
     //region DataWedge Actions
     const val DATAWEDGE_SEND_ACTION = "com.symbol.datawedge.api.ACTION"
@@ -179,7 +182,7 @@ object DataWedgeUtils {
             putExtra(command, parameter)
             if (sendResult) putExtra(DATAWEDGE_EXTRA_SEND_RESULT, "true")
         }
-        context.sendBroadcast(dwIntent)
+        sendBroadcast(context, dwIntent)
     }
 
     fun sendCommandBundle(context: Context, command: String, parameter: Bundle, sendResult: Boolean) {
@@ -187,6 +190,15 @@ object DataWedgeUtils {
             putExtra(command, parameter)
             if (sendResult) putExtra(DATAWEDGE_EXTRA_SEND_RESULT, "true")
         }
-        context.sendBroadcast(dwIntent)
+        sendBroadcast(context, dwIntent)
+    }
+
+    private fun sendBroadcast(context: Context, dwIntent: Intent) {
+        runCatching {
+            // This raise a 'Sending non-protected broadcast Exception', probably because of the version 8 of dataWedge
+            // You could check if it exists in newer version
+            // This  is just a warning and doesn't affect functionality
+            context.sendBroadcast(dwIntent)
+        }.onFailure { Log.d(TAG, it.message.toString()) }
     }
 }
