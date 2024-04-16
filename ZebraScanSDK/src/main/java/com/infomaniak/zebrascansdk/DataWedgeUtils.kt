@@ -108,8 +108,8 @@ object DataWedgeUtils {
         val barcodePlugin = Bundle().apply {
             putString("PLUGIN_NAME", "BARCODE")
             putString("RESET_CONFIG", "true") // This is the default but never hurts to specify
+            putBundle("PARAM_LIST", Bundle())
         }
-        barcodePlugin.putBundle("PARAM_LIST", Bundle())
         profileConfig.putBundle("PLUGIN_CONFIG", barcodePlugin)
 
         // Associate profile with this app
@@ -118,6 +118,19 @@ object DataWedgeUtils {
             putStringArray("ACTIVITY_LIST", arrayOf("*"))
         }
         profileConfig.putParcelableArray("APP_LIST", arrayOf(appConfig))
+        sendCommandBundle(context, DATAWEDGE_SEND_SET_CONFIG, profileConfig, sendResult)
+
+        // Configure keystroke plugin
+        val keystrokeParams = Bundle().apply {
+            putString("keystroke_output_enabled", "false")
+        }
+
+        val keyStrokePlugin = Bundle().apply {
+            putString("PLUGIN_NAME", "KEYSTROKE")
+            putBundle("PARAM_LIST", keystrokeParams)
+            putString("RESET_CONFIG", "true") // This is the default but never hurts to specify
+        }
+        profileConfig.putBundle("PLUGIN_CONFIG", keyStrokePlugin)
         sendCommandBundle(context, DATAWEDGE_SEND_SET_CONFIG, profileConfig, sendResult)
 
         // Configure intent output for captured data to be sent to this app
